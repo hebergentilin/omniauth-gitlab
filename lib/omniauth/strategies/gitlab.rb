@@ -6,9 +6,9 @@ module OmniAuth
     class GitLab < OmniAuth::Strategies::OAuth2
 
       option :client_options, {
-          site: 'http://localhost:81/gitlab/',
-          authorize_url: 'oauth/authorize',
-          token_url: 'oauth/token'
+          site: 'https://gitlab.com',
+          authorize_url: '/oauth/authorize',
+          token_url: '/oauth/token'
       }
 
       option :redirect_url
@@ -29,7 +29,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get('api/v4/user').parsed
+        @raw_info ||= access_token.get('api/v3/user').parsed
       end
 
       private
