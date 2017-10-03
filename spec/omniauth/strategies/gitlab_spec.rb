@@ -6,7 +6,7 @@ describe OmniAuth::Strategies::GitLab do
   let(:parsed_response) { double('ParsedResponse') }
   let(:response) { double('Response', parsed: parsed_response) }
 
-  let(:enterprise_site)           { 'https://some.other.site.com/api/v3' }
+  let(:enterprise_site)           { 'https://some.other.site.com/api/v4' }
   let(:enterprise_authorize_url)  { '/oauth/authorize' }
   let(:enterprise_token_url)      { '/oauth/access_token' }
 
@@ -60,7 +60,7 @@ describe OmniAuth::Strategies::GitLab do
 
   describe '#raw_info' do
     it 'sent request to current user endpoint' do
-      expect(access_token).to receive(:get).with('/api/v3/user').and_return(response)
+      expect(access_token).to receive(:get).with('/api/v4/user').and_return(response)
       expect(subject.raw_info).to eq(parsed_response)
     end
   end
